@@ -4,7 +4,6 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const io = require("socket.io")(server);
-const PORT = 3030;
 
 // __dir refering to currnet directory
 app.get("/", (req, res) => {
@@ -23,7 +22,7 @@ io.on('connection', (socket) => {
   });
 });
 
-
-server.listen(PORT, () => {
+// use process.env.PORT in heroku, because heroku doesn't have 3030 port
+server.listen(process.env.PORT || 3030, () => {
   console.log("listening on 3030");
 });
